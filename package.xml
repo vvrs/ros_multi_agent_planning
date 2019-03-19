@@ -1,19 +1,19 @@
 <?xml version="1.0"?>
 <package format="2">
-  <name>vishnu_rudrasamudram_intern</name>
+  <name>Vishnu Rudrasamudram</name>
   <version>0.0.0</version>
   <description>The vishnu_rudrasamudram_intern package</description>
 
   <!-- One maintainer tag required, multiple allowed, one person per tag -->
   <!-- Example:  -->
   <!-- <maintainer email="jane.doe@example.com">Jane Doe</maintainer> -->
-  <maintainer email="vishnu@todo.todo">vishnu</maintainer>
+  <maintainer email="vishnu.rudrasamudram@gmail.com">vishnu</maintainer>
 
 
   <!-- One license tag required, multiple allowed, one license per tag -->
   <!-- Commonly used license strings: -->
   <!--   BSD, MIT, Boost Software License, GPLv2, GPLv3, LGPLv2.1, LGPLv3 -->
-  <license>TODO</license>
+  <license>MIT</license>
 
 
   <!-- Url tags are optional, but multiple are allowed, one per tag -->
