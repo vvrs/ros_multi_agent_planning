@@ -21,19 +21,19 @@ public:
      * Constructor
      * @param nodeHandle the ROS node handle
      */
-    Agent(std::string name, );
+    Agent(std::string name);
 
     /*!
      * Destructor
      */
     virtual ~Agent();
 
-private:
-    /*!
-     * Reads and verifies the ROS parameters.
-     * @return true if successful.
-     */
-    bool readParams();
+// private:
+//     /*!
+//      * Reads and verifies the ROS parameters.
+//      * @return true if successful.
+//      */
+//     bool readParams();
 
 
 

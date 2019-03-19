@@ -3,6 +3,7 @@ project(vishnu_rudrasamudram_intern)
 
 ## Compile as C++11, supported in ROS Kinetic and newer
 # add_compile_options(-std=c++11)
+add_definitions(-std=c++11)
 
 ## Find catkin macros and libraries
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
@@ -104,9 +105,9 @@ find_package(catkin REQUIRED COMPONENTS
 ## CATKIN_DEPENDS: catkin_packages dependent projects also need
 ## DEPENDS: system dependencies of this project that dependent projects also need
 catkin_package(
-#  INCLUDE_DIRS include
-#  LIBRARIES vishnu_rudrasamudram_intern
-#  CATKIN_DEPENDS geometry_msgs roscpp rospy std_msgs
+ INCLUDE_DIRS include
+ LIBRARIES ${PROJECT_NAME}_core
+ CATKIN_DEPENDS geometry_msgs roscpp rospy std_msgs
 #  DEPENDS system_lib
 )
 
@@ -117,14 +118,14 @@ catkin_package(
 ## Specify additional locations of header files
 ## Your package locations should be listed before other locations
 include_directories(
-# include
+  include
   ${catkin_INCLUDE_DIRS}
 )
 
-## Declare a C++ library
-# add_library(${PROJECT_NAME}
-#   src/${PROJECT_NAME}/vishnu_rudrasamudram_intern.cpp
-# )
+# Declare a C++ library
+add_library(${PROJECT_NAME}_core
+  src/Algorithm.cpp
+)
 
 ## Add cmake target dependencies of the library
 ## as an example, code may need to be generated before libraries
@@ -147,9 +148,11 @@ add_executable(map_node src/Map.cpp)
 
 ## Add cmake target dependencies of the executable
 ## same as for the library above
-# add_dependencies(${PROJECT_NAME}_node ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+add_dependencies(agent_node ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+add_dependencies(map_node ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 
-## Specify libraries to link a library or executable target against
+
+# Specify libraries to link a library or executable target against
 # target_link_libraries(${PROJECT_NAME}_node
 #   ${catkin_LIBRARIES}
 # )
@@ -186,6 +189,13 @@ target_link_libraries(map_node  ${catkin_LIBRARIES})
 #   PATTERN ".svn" EXCLUDE
 # )
 
+# Mark cpp header files for installation
+install(
+  DIRECTORY include/${PROJECT_NAME}/
+  DESTINATION ${CATKIN_PACKAGE_INCLUDE_DESTINATION}
+  FILES_MATCHING PATTERN "*.hpp"
+)
+
 ## Mark other files for installation (e.g. launch and bag files, etc.)
 # install(FILES
 #   # myfile1
@@ -197,11 +207,23 @@ target_link_libraries(map_node  ${catkin_LIBRARIES})
 ## Testing ##
 #############
 
-## Add gtest based cpp test target and link libraries
+# set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -pthread")
+# # Add gtest based cpp test target and link libraries
 # catkin_add_gtest(${PROJECT_NAME}-test test/test_vishnu_rudrasamudram_intern.cpp)
 # if(TARGET ${PROJECT_NAME}-test)
 #   target_link_libraries(${PROJECT_NAME}-test ${PROJECT_NAME})
 # endif()
 
-## Add folders to be run by python nosetests
-# catkin_add_nosetests(test)
+# Add folders to be run by python nosetests
+catkin_add_nosetests(test)
+if(CATKIN_ENABLE_TESTING)
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -pthread")
+## Add gtest based cpp test target and link libraries
+catkin_add_gtest(${PROJECT_NAME}-test
+  test/test_vishnu_rudrasamudram_intern.cpp
+  test/algorithm_test.cpp)
+endif()
+
+if(TARGET ${PROJECT_NAME}-test)
+  target_link_libraries(${PROJECT_NAME}-test ${PROJECT_NAME}_core)
+endif()
