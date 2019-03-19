@@ -2,10 +2,11 @@
 #include "geometry_msgs/Pose2D.h"
 #include "vishnu_rudrasamudram_intern/Algorithm.hpp"
 #include "vishnu_rudrasamudram_intern/GetPlan.h"
-
+#include <boost/shared_ptr.hpp>
 
 class PlanServer
 {
+
 private:
     geometry_msgs::Pose2D location;
 public:
@@ -21,7 +22,7 @@ protected:
 PlanServer::PlanServer(ros::NodeHandle& nh)
 {
     ros::ServiceServer plan_service = nh.advertiseService("get_plan", &PlanServer::getPlan_Server, this);
-    sub = nh.subscribe("agent_feedback",1000,&PlanServer::callBack, this);
+    // sub = nh.subscribe("agent_feedback",1000,&PlanServer::callBack, this);
     ROS_INFO("Ready to send plan...");
     ros::spin();
 }
@@ -29,7 +30,6 @@ PlanServer::PlanServer(ros::NodeHandle& nh)
 PlanServer::~PlanServer()
 {
 }
-
 
 void PlanServer::callBack(const geometry_msgs::Pose2D& msg)
 {
@@ -42,7 +42,16 @@ bool PlanServer::getPlan_Server(vishnu_rudrasamudram_intern::GetPlan::Request &r
 {
 
     std::vector<std::vector<int>> world_state(GRID_SIZE_H, std::vector<int>(GRID_SIZE_W, FREE_CELL));
-    std::pair<int, int> a = {location.x, location.y};
+
+    boost::shared_ptr<geometry_msgs::Pose2D const> sharedPose;
+    geometry_msgs::Pose2D pose_;
+    sharedPose = ros::topic::waitForMessage<geometry_msgs::Pose2D>("/agent_feedback");
+
+    if(sharedPose != NULL){
+        pose_ = *sharedPose;
+    }
+
+    std::pair<int, int> a = {pose_.x,pose_.y};
     std::pair<int, int> b = {req.goal.x, req.goal.y};
 
     multi_agent_planner::Dijkstra c;
@@ -68,10 +77,7 @@ int main(int argc, char **argv)
 {
     ros::init(argc,argv,"planning_server");
     ros::NodeHandle nh;
-    PlanServer ps(nh);
-    
-    
-    
+    PlanServer ps(nh);   
     
     return 0;
 }

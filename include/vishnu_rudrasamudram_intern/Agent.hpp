@@ -6,6 +6,8 @@
 
 #include "vishnu_rudrasamudram_intern/Algorithm.hpp"
 
+// #include
+
 namespace multi_agent_planner
 {
 /*
@@ -30,7 +32,7 @@ class Agent
 
   public:
     
-    Agent(ros::NodeHandle& nodeHandleint id, geometry_msgs::Pose2D& startPose);
+    Agent(ros::NodeHandle& nodeHandle, int id, geometry_msgs::Pose2D& startPose);
     void SetPosition(geometry_msgs::Pose2D& pos);
     virtual ~Agent();
 private:
