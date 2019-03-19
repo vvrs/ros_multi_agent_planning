@@ -43,7 +43,7 @@ std::map<Dijkstra::position, std::vector<Dijkstra::position> > Dijkstra::Compute
     return m;
 }
 
-std::vector<Dijkstra::position> Dijkstra::search(std::vector<std::vector<int> >& env, Dijkstra::position& start, Dijkstra::position& goal)
+std::vector<Dijkstra::position> Dijkstra::Search(std::vector<std::vector<int> >& env, Dijkstra::position& start, Dijkstra::position& goal)
 {
     std::map<Dijkstra::position, std::vector<Dijkstra::position > > map = ComputeMap(env);
     std::map<Dijkstra::position, Dijkstra::position > came_from;
@@ -68,7 +68,7 @@ std::vector<Dijkstra::position> Dijkstra::search(std::vector<std::vector<int> >&
 
         for (Dijkstra::position next : search->second)
         {
-            double new_cost = cost_so_far[current] + 1;
+            double new_cost = cost_so_far[current] + EDGE_COST;
             if (cost_so_far.find(next) == cost_so_far.end() || new_cost < cost_so_far[next]) // cannot find next or new_cost less than cost_so_far
             {
                 cost_so_far[next] = new_cost;

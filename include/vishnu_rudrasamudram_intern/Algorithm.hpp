@@ -5,6 +5,11 @@
 #include<algorithm>
 #include<map>
 
+#define EDGE_COST 10
+#define GRID_SIZE_H 10
+#define GRID_SIZE_W 10
+#define FREE_CELL 0
+#define OCC_CELL 1
 namespace multi_agent_planner{
 
 class Dijkstra
@@ -14,7 +19,7 @@ class Dijkstra
 
         Dijkstra();
         std::map<position, std::vector<position>> ComputeMap(std::vector<std::vector<int>>&);
-        std::vector<position> search(std::vector<std::vector<int>>&, position&, position&);
+        std::vector<position> Search(std::vector<std::vector<int>>&, position&, position&);
         virtual ~Dijkstra();
 };
 

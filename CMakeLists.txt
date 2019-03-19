@@ -13,6 +13,7 @@ find_package(catkin REQUIRED COMPONENTS
   roscpp
   rospy
   std_msgs
+  message_generation
 )
 
 ## System dependencies are found with CMake's conventions
@@ -48,19 +49,18 @@ find_package(catkin REQUIRED COMPONENTS
 ##   * uncomment the generate_messages entry below
 ##   * add every package in MSG_DEP_SET to generate_messages(DEPENDENCIES ...)
 
-## Generate messages in the 'msg' folder
-# add_message_files(
-#   FILES
-#   Message1.msg
-#   Message2.msg
-# )
+# Generate messages in the 'msg' folder
+add_message_files(
+  FILES
+  Path.msg
+)
 
-## Generate services in the 'srv' folder
-# add_service_files(
-#   FILES
-#   Service1.srv
-#   Service2.srv
-# )
+# Generate services in the 'srv' folder
+add_service_files(
+  FILES
+  GetPlan.srv
+  # Service2.srv
+)
 
 ## Generate actions in the 'action' folder
 # add_action_files(
@@ -69,11 +69,13 @@ find_package(catkin REQUIRED COMPONENTS
 #   Action2.action
 # )
 
-## Generate added messages and services with any dependencies listed here
-# generate_messages(
-#   DEPENDENCIES
-#   geometry_msgs#   std_msgs
-# )
+# Generate added messages and services with any dependencies listed here
+generate_messages(
+  DEPENDENCIES
+  geometry_msgs
+  std_msgs
+  vishnu_rudrasamudram_intern
+)
 
 ################################################
 ## Declare ROS dynamic reconfigure parameters ##
@@ -107,7 +109,7 @@ find_package(catkin REQUIRED COMPONENTS
 catkin_package(
  INCLUDE_DIRS include
  LIBRARIES ${PROJECT_NAME}_core
- CATKIN_DEPENDS geometry_msgs roscpp rospy std_msgs
+ CATKIN_DEPENDS geometry_msgs roscpp rospy std_msgs message_runtime
 #  DEPENDS system_lib
 )
 
@@ -127,9 +129,9 @@ add_library(${PROJECT_NAME}_core
   src/Algorithm.cpp
 )
 
-## Add cmake target dependencies of the library
-## as an example, code may need to be generated before libraries
-## either from message generation or dynamic reconfigure
+# Add cmake target dependencies of the library
+# as an example, code may need to be generated before libraries
+# either from message generation or dynamic reconfigure
 # add_dependencies(${PROJECT_NAME} ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 
 ## Declare a C++ executable
@@ -138,6 +140,8 @@ add_library(${PROJECT_NAME}_core
 # add_executable(${PROJECT_NAME}_node src/vishnu_rudrasamudram_intern_node.cpp)
 add_executable(agent_node src/Agent.cpp)
 add_executable(map_node src/Map.cpp)
+# add_executable(planning_node src/planning_node.cpp)
+add_executable(plan_server_node src/plan_server.cpp)
 
 
 ## Rename C++ executable without prefix
@@ -150,6 +154,8 @@ add_executable(map_node src/Map.cpp)
 ## same as for the library above
 add_dependencies(agent_node ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 add_dependencies(map_node ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+# add_dependencies(planning_node ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+add_dependencies(plan_server_node ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 
 
 # Specify libraries to link a library or executable target against
@@ -157,8 +163,10 @@ add_dependencies(map_node ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_
 #   ${catkin_LIBRARIES}
 # )
 
-target_link_libraries(agent_node  ${catkin_LIBRARIES})
-target_link_libraries(map_node  ${catkin_LIBRARIES})
+target_link_libraries(agent_node  ${PROJECT_NAME}_core ${catkin_LIBRARIES})
+target_link_libraries(map_node  ${PROJECT_NAME}_core ${catkin_LIBRARIES})
+# target_link_libraries(planning_node  ${PROJECT_NAME}_core ${catkin_LIBRARIES})
+target_link_libraries(plan_server_node  ${PROJECT_NAME}_core ${catkin_LIBRARIES})
 
 
 #############
@@ -175,7 +183,7 @@ target_link_libraries(map_node  ${catkin_LIBRARIES})
 #   DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 # )
 
-## Mark executables and/or libraries for installation
+# # Mark executables and/or libraries for installation
 # install(TARGETS ${PROJECT_NAME} ${PROJECT_NAME}_node
 #   ARCHIVE DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
 #   LIBRARY DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
