@@ -1,13 +1,48 @@
 #include "ros/ros.h"
+#include "geometry_msgs/Pose2D.h"
 #include "vishnu_rudrasamudram_intern/Algorithm.hpp"
 #include "vishnu_rudrasamudram_intern/GetPlan.h"
 
-bool GetPlanServer(vishnu_rudrasamudram_intern::GetPlan::Request &req,
+
+class PlanServer
+{
+private:
+    geometry_msgs::Pose2D location;
+public:
+    PlanServer(ros::NodeHandle& nh);
+    bool getPlan_Server(vishnu_rudrasamudram_intern::GetPlan::Request &req,
+                   vishnu_rudrasamudram_intern::GetPlan::Response &res);
+    void callBack(const geometry_msgs::Pose2D& msg);
+    ~PlanServer();
+protected:
+    ros::Subscriber sub;
+};
+
+PlanServer::PlanServer(ros::NodeHandle& nh)
+{
+    ros::ServiceServer plan_service = nh.advertiseService("get_plan", &PlanServer::getPlan_Server, this);
+    sub = nh.subscribe("agent_feedback",1000,&PlanServer::callBack, this);
+    ROS_INFO("Ready to send plan...");
+    ros::spin();
+}
+
+PlanServer::~PlanServer()
+{
+}
+
+
+void PlanServer::callBack(const geometry_msgs::Pose2D& msg)
+{
+    location = msg;
+}
+
+
+bool PlanServer::getPlan_Server(vishnu_rudrasamudram_intern::GetPlan::Request &req,
                    vishnu_rudrasamudram_intern::GetPlan::Response &res)
 {
 
     std::vector<std::vector<int>> world_state(GRID_SIZE_H, std::vector<int>(GRID_SIZE_W, FREE_CELL));
-    std::pair<int, int> a = {0, 0};
+    std::pair<int, int> a = {location.x, location.y};
     std::pair<int, int> b = {req.goal.x, req.goal.y};
 
     multi_agent_planner::Dijkstra c;
@@ -33,10 +68,10 @@ int main(int argc, char **argv)
 {
     ros::init(argc,argv,"planning_server");
     ros::NodeHandle nh;
-
-    ros::ServiceServer plan_service = nh.advertiseService("get_plan", GetPlanServer);
-    ROS_INFO("Ready to send plan...");
-    ros::spin();
+    PlanServer ps(nh);
+    
+    
+    
     
     return 0;
 }

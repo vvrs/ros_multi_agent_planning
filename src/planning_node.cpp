@@ -9,11 +9,6 @@
 #include <ctime>
 #include <iostream>
 
-
-
-
-
-
 int main(int argc, char **argv)
 {
     ros::init(argc, argv, "planner");

@@ -1,3 +1,4 @@
 geometry_msgs/Pose2D goal
+std_msgs/String id
 ---
 vishnu_rudrasamudram_intern/Path path
