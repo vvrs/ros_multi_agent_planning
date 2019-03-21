@@ -43,9 +43,69 @@ This launches planner server node, and rviz node for visualization of the path.
 
 ### Nodes
 
-##### agent_node
+#### agent_node
 
-##### plan_server_node
+Publications: 
+ * /agent_feedback [vishnu_rudrasamudram_intern/Position]
+ * /agent_path [vishnu_rudrasamudram_intern/Path]
 
-##### paths2rviz_node
+Subscriptions: None
 
+Services: 
+ * /update_goal
+
+
+#### plan_server_node
+
+Publications: None
+
+Subscriptions: 
+ * /agent_feedback [vishnu_rudrasamudram_intern/Position]
+
+Services: 
+ * /get_plan
+
+
+#### paths2rviz_node
+Publications: 
+ * /path [nav_msgs/Path]
+
+Subscriptions: 
+ * /agent_path [vishnu_rudrasamudram_intern/Path]
+
+Services: None
+
+### Test
+
+Run below commands in different terminal tabs
+
+
+> `roslaunch vishnu_rudrasamudram_intern add_agent.launch`
+
+>`roslaunch vishnu_rudrasamudram_intern add_agent.launch robot_id:=agent_2 x:=5 y:=5`
+
+>`roslaunch vishnu_rudrasamudram_intern planner_and_viz.launch`
+
+Now, you will see two nodes for agents (robot_0_node and robot_1_node) run and RViz window opens.
+
+Use below command to make a service call to update the goal
+
+```
+rosservice call /update_goal "goal:
+  x: 5
+  y: 5
+  theta: 0.0
+id:
+  data: agent_1" 
+ ``` 
+
+```
+rosservice call /update_goal "goal:
+  x: 10
+  y: 8
+  theta: 0.0
+id:
+  data: agent_2" 
+ ``` 
+
+ Once the above command is executed, rviz plots the path corresponding to robot. Currently, rviz is configured to show paths of only two agents, namely robot_0 and robot_1. 

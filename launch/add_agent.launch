@@ -1,5 +1,5 @@
 <launch>
-	<arg name = "robot_id" default = "robot_0"/>
+	<arg name = "robot_id" default = "agent_1"/>
 	<arg name = "x" default = "0"/>
 	<arg name = "y" default = "0"/>
 	<arg name = "theta" default = "0"/>

@@ -41,7 +41,7 @@ bool multi_agent_planner::PlanServer::getPlan_Server(vishnu_rudrasamudram_intern
 
     */
 
-    std::vector<std::vector<int>> world_state(GRID_SIZE_H, std::vector<int>(GRID_SIZE_W, FREE_CELL));
+    std::vector<std::vector<int>> world_state(GRID_SIZE_H+1, std::vector<int>(GRID_SIZE_W+1, FREE_CELL));
 
     if(req.goal.x<0 || req.goal.x>GRID_SIZE_W || req.goal.y<0 || req.goal.y>GRID_SIZE_H)
         return false;
