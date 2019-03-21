@@ -1,0 +1,12 @@
+<launch>
+    <node   name = "$planning_node" 
+            pkg = "vishnu_rudrasamudram_intern" 
+            type = "plan_server_node" 
+            output = "screen"/>
+
+
+    <node   name="rviz" 
+            type="rviz" 
+            pkg="rviz" 
+            args="-d $(find vishnu_rudrasamudram_intern)/config/multi_agent_planner.rviz" />
+</launch>

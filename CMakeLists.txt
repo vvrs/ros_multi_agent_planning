@@ -146,6 +146,7 @@ add_library(${PROJECT_NAME}_core
 add_executable(agent_node src/agent_node.cpp src/Agent.cpp)
 add_executable(plan_server_node src/plan_server_node.cpp src/PlanServer.cpp)
 add_executable(plan_client_node src/plan_client.cpp)
+add_executable(path2rviz_node src/paths2rviz.cpp)
 
 
 
@@ -162,6 +163,7 @@ add_dependencies(agent_node ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTE
 # add_dependencies(planning_node ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 add_dependencies(plan_server_node ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 add_dependencies(plan_client_node ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+add_dependencies(path2rviz_node ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 
 
 
@@ -175,6 +177,7 @@ target_link_libraries(agent_node  ${PROJECT_NAME}_core ${catkin_LIBRARIES})
 # target_link_libraries(planning_node  ${PROJECT_NAME}_core ${catkin_LIBRARIES})
 target_link_libraries(plan_server_node  ${PROJECT_NAME}_core ${catkin_LIBRARIES})
 target_link_libraries(plan_client_node  ${PROJECT_NAME}_core ${catkin_LIBRARIES})
+target_link_libraries(path2rviz_node  ${PROJECT_NAME}_core ${catkin_LIBRARIES})
 
 
 

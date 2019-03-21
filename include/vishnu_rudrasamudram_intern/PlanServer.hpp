@@ -6,7 +6,7 @@
 #include "vishnu_rudrasamudram_intern/GetPlan.h"
 #include "vishnu_rudrasamudram_intern/Position.h"
 #include <boost/shared_ptr.hpp>
-
+#include <map>
 namespace multi_agent_planner
 {
 
@@ -15,7 +15,7 @@ class PlanServer
 
   private:
     vishnu_rudrasamudram_intern::Position location;
-
+    std::map<std::string, geometry_msgs::Pose2D> pos_map;
   public:
     PlanServer(ros::NodeHandle &nh);
     bool getPlan_Server(vishnu_rudrasamudram_intern::GetPlan::Request &req,

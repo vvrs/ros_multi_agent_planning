@@ -11,18 +11,14 @@ multi_agent_planner::Agent::Agent(ros::NodeHandle &nh, std::string robot_id, int
     location.position.x = x;
     location.position.y = y;
     location.position.theta = theta;
-
     agentFeedbackPub.publish(location);
-
-    // ros::Rate r(10);
-    // while (ros::ok())
-    // {
-    //     publishFeedBack();
-    //     publishPath();
-
-    //     ros::spinOnce();
-    //     r.sleep();
-    // }
+    ros::Rate rate(1);
+    while(ros::ok()){
+        publishFeedBack();
+        publishPath();
+        ros::spinOnce();
+        rate.sleep();
+    }
     std::cout << "Agent " << robot_id << " node is running ...\n";
 }
 
@@ -41,19 +37,19 @@ bool multi_agent_planner::Agent::updateGoal_Server(vishnu_rudrasamudram_intern::
     if (client.call(srv))
     {
         vishnu_rudrasamudram_intern::Path path = srv.response.path;
-        // vishnu_rudrasamudram_intern::Path pathMsg;
-        // geometry_msgs::Pose2D temp;
-        // for (const auto p : path.poses)
-        // {
-        //     temp.x = p.x;
-        //     temp.y = p.y;
-        //     temp.theta = p.theta;
+        vishnu_rudrasamudram_intern::Path pathMsg;
+        geometry_msgs::Pose2D temp;
+        for (const auto p : path.poses)
+        {
+            temp.x = p.x;
+            temp.y = p.y;
+            temp.theta = p.theta;
 
-        //     pathMsg.poses.push_back(temp);
-        // }
-        // pathMsg.id.data = req.id.data;
+            pathMsg.poses.push_back(temp);
+        }
+        pathMsg.id.data = req.id.data;
         // res.path = pathMsg;
-        // m_path_msg = pathMsg;
+        m_path_msg = pathMsg;
         res.response.data = "Path received...";
     }
     else
@@ -61,7 +57,23 @@ bool multi_agent_planner::Agent::updateGoal_Server(vishnu_rudrasamudram_intern::
         ROS_ERROR("Failed to call service get_plan");
         return 1;
     }
+    // vishnu_rudrasamudram_intern::GetPlan srv;
 
+    // srv.request.goal.x = req.goal.x;
+    // srv.request.goal.y = req.goal.y;
+    // srv.request.id.data = req.id.data;
+
+    // if(ros::service::call("get_plan",srv))
+    // {
+    //     res.response.data = "Path Received...";
+    // }
+    // else
+    // {
+    //     ROS_INFO("Failed to call the service...");
+    //     return 1;
+    // }
+
+    // res.response.data = "Sucess...";
     return true;
 }
 
