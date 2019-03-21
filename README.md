@@ -30,10 +30,10 @@ This is a package to demonstrate multi-agent scenario with decentralized plannin
 ### Launch Files
 ##### add_agent.launch
 ###### Arguments
-    - **robot_id** : Default `robot_0`  
-    - **x** : Default `0`  
-    - **y** : Default `0`
-    - **theta** : Default `0`  
+* **robot_id** : Default `robot_0'
+* **x** : Default `0`  
+* **y** : Default `0`
+* **theta** : Default `0`  
 
 ### Nodes
 
