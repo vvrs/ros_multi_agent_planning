@@ -4,7 +4,7 @@ Multi-agent scenario with decentralized planning
 
 ### Overview
 
-This is a package to demonstrate multi-agent scenario with decentralized planning in a grid world.This is a package to demonstrate multi-agent scenario with decentralized planning in a grid world. The final result can be seen below,
+This is a package to demonstrate multi-agent scenario with decentralized planning in a grid world. The final result can be seen below,
 
 ![rviz_display](docs/result.png)
 
