@@ -109,3 +109,5 @@ id:
  ``` 
 
  Once the above command is executed, rviz plots the path corresponding to robot. Currently, rviz is configured to show paths of only two agents, namely robot_0 and robot_1. 
+
+> Note: gtest is written only for Dijkstra algorithm, and can be tested by using `catkin_make run_tests_vishnu_rudrasamudram_intern`.
