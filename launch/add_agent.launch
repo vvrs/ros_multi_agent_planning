@@ -4,5 +4,9 @@
 	<arg name = "y" default = "0"/>
 	<arg name = "theta" default = "0"/>
 	
-	<node name = "$(arg robot_id)_node" pkg = "vishnu_rudrasamudram_intern" type = "agent_node" args = "$(arg robot_id) $(arg x) $(arg y) $(arg theta)" output = "screen"/>
+	<node 	name = "$(arg robot_id)_node" 
+			pkg = "vishnu_rudrasamudram_intern" 
+			type = "agent_node" 
+			args = "$(arg robot_id) $(arg x) $(arg y) $(arg theta)" 
+			output = "screen"/>
 </launch>

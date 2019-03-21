@@ -14,7 +14,9 @@ multi_agent_planner::PlanServer::~PlanServer()
 
 void multi_agent_planner::PlanServer::callBack(const vishnu_rudrasamudram_intern::Position& msg)
 {
-    location = msg;
+    std::cout<<"call back robot id : "<<msg.id<<std::endl;
+    pos_map[msg.id.data] = msg.position;
+    // location = msg;
 }
 
 
@@ -35,29 +37,31 @@ bool multi_agent_planner::PlanServer::getPlan_Server(vishnu_rudrasamudram_intern
     //     pose_ = *sharedPose;
     // }
 
-    // std::pair<int, int> a = {pose_.position.x,pose_.position.y};
-    if(req.id.data == location.id.data)
+    // std::pair<int, int> a = {pose_.position.x,pose_.position.y};cout
+    // std::cout<<"Request robot id : "<<req.id.data<<std::endl;
+    // std::cout<<"current robot id : "<<location.id.data<<std::endl;
+    // if(req.id.data == location.id.data)
+    // {
+    std::pair<int, int> a = {pos_map[req.id.data].x, pos_map[req.id.data].y};
+    std::pair<int, int> b = {req.goal.x, req.goal.y};
+
+    multi_agent_planner::Dijkstra c;
+    std::vector<std::pair<int, int>> path = c.Search(world_state, a, b);
+
+    vishnu_rudrasamudram_intern::Path pathMsg;
+    geometry_msgs::Pose2D temp;
+    
+    for (const auto p : path)
     {
-        std::pair<int, int> a = {location.position.x, location.position.y};
-        std::pair<int, int> b = {req.goal.x, req.goal.y};
+        temp.x = p.first;
+        temp.y = p.second;
+        temp.theta = 0;
 
-        multi_agent_planner::Dijkstra c;
-        std::vector<std::pair<int, int>> path = c.Search(world_state, a, b);
-
-        vishnu_rudrasamudram_intern::Path pathMsg;
-        geometry_msgs::Pose2D temp;
-        
-        for (const auto p : path)
-        {
-            temp.x = p.first;
-            temp.y = p.second;
-            temp.theta = 0;
-
-            pathMsg.poses.push_back(temp);
-        }
-        pathMsg.id.data = req.id.data;
-        res.path = pathMsg;
-        ROS_INFO("Sent the path...");
+        pathMsg.poses.push_back(temp);
     }
+    pathMsg.id.data = req.id.data;
+    res.path = pathMsg;
+    ROS_INFO("Sent the path...");
+    // }
     return true;
 }
