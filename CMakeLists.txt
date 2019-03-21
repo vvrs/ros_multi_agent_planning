@@ -60,6 +60,7 @@ add_message_files(
 add_service_files(
   FILES
   GetPlan.srv
+  UpdateGoal.srv
   # Service2.srv
 )
 
@@ -140,10 +141,10 @@ add_library(${PROJECT_NAME}_core
 ## With catkin_make all packages are built within a single CMake context
 ## The recommended prefix ensures that target names across packages don't collide
 # add_executable(${PROJECT_NAME}_node src/vishnu_rudrasamudram_intern_node.cpp)
-add_executable(agent_node src/agent_node.cpp)
 # add_executable(map_node src/Map.cpp)
 # add_executable(planning_node src/planning_node.cpp)
-add_executable(plan_server_node src/plan_server.cpp)
+add_executable(agent_node src/agent_node.cpp src/Agent.cpp)
+add_executable(plan_server_node src/plan_server_node.cpp src/PlanServer.cpp)
 add_executable(plan_client_node src/plan_client.cpp)
 
 
