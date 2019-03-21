@@ -86,7 +86,7 @@ Run below commands in different terminal tabs
 
 ```roslaunch vishnu_rudrasamudram_intern planner_and_viz.launch```
 
-Now, you will see two nodes for agents (agent_1_node and agent_2_node) run and RViz window opens.
+Now, you will see two nodes for agents (agent_1_node and agent_2_node) running and RViz window opens.
 
 Use below command to make a service call to update the goal
 
