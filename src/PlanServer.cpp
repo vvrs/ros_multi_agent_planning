@@ -3,7 +3,7 @@
 multi_agent_planner::PlanServer::PlanServer(ros::NodeHandle& nh)
 {
     ros::ServiceServer plan_service = nh.advertiseService("get_plan", &PlanServer::getPlan_Server, this);
-    // sub = nh.subscribe("agent_feedback",1000,&PlanServer::callBack, this);
+    sub = nh.subscribe("agent_feedback",1000,&PlanServer::callBack, this);
     ROS_INFO("Ready to send plan...");
     ros::spin();
 }
@@ -26,33 +26,38 @@ bool multi_agent_planner::PlanServer::getPlan_Server(vishnu_rudrasamudram_intern
 
     std::vector<std::vector<int>> world_state(GRID_SIZE_H, std::vector<int>(GRID_SIZE_W, FREE_CELL));
 
-    boost::shared_ptr<vishnu_rudrasamudram_intern::Position const> sharedPose;
-    vishnu_rudrasamudram_intern::Position pose_;
-    sharedPose = ros::topic::waitForMessage<vishnu_rudrasamudram_intern::Position>("/agent_feedback");
+    // boost::shared_ptr<vishnu_rudrasamudram_intern::Position const> sharedPose;
+    // vishnu_rudrasamudram_intern::Position pose_;
+    // ROS_INFO("Making path message...");
+    // sharedPose = ros::topic::waitForMessage<vishnu_rudrasamudram_intern::Position>("/agent_feedback");
 
-    if(sharedPose != NULL){
-        pose_ = *sharedPose;
-    }
+    // if(sharedPose != NULL){
+    //     pose_ = *sharedPose;
+    // }
 
-    std::pair<int, int> a = {pose_.position.x,pose_.position.y};
-    std::pair<int, int> b = {req.goal.x, req.goal.y};
-
-    multi_agent_planner::Dijkstra c;
-    std::vector<std::pair<int, int>> path = c.Search(world_state, a, b);
-
-    vishnu_rudrasamudram_intern::Path pathMsg;
-    geometry_msgs::Pose2D temp;
-    for (const auto p : path)
+    // std::pair<int, int> a = {pose_.position.x,pose_.position.y};
+    if(req.id.data == location.id.data)
     {
-        temp.x = p.first;
-        temp.y = p.second;
-        temp.theta = 0;
+        std::pair<int, int> a = {location.position.x, location.position.y};
+        std::pair<int, int> b = {req.goal.x, req.goal.y};
 
-        pathMsg.poses.push_back(temp);
+        multi_agent_planner::Dijkstra c;
+        std::vector<std::pair<int, int>> path = c.Search(world_state, a, b);
+
+        vishnu_rudrasamudram_intern::Path pathMsg;
+        geometry_msgs::Pose2D temp;
+        
+        for (const auto p : path)
+        {
+            temp.x = p.first;
+            temp.y = p.second;
+            temp.theta = 0;
+
+            pathMsg.poses.push_back(temp);
+        }
+        pathMsg.id.data = req.id.data;
+        res.path = pathMsg;
+        ROS_INFO("Sent the path...");
     }
-    pathMsg.id.data = req.id.data;
-    res.path = pathMsg;
-    ROS_INFO("Sent the path...");
-
     return true;
 }

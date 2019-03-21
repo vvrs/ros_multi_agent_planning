@@ -17,15 +17,15 @@ int main(int argc, char **argv)
     init_p.position.theta = init_theta;
 
     multi_agent_planner::Agent agent_(nh, robot_id, init_x, init_y, init_theta);
-    ros::Rate rate(10);
+    ros::Rate rate(1);
     while (ros::ok())
     {
-
+        // ROS_INFO("ABC...");
         // agent_.updatePose(init_p);
         agent_.publishFeedBack();
         agent_.publishPath();
-        // ros::spin();
-        // rate.sleep()
+        ros::spinOnce();
+        rate.sleep();
     }
     return 0;
 }
