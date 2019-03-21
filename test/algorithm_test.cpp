@@ -22,10 +22,10 @@ TEST(Dijkstra, simpleTest)
     // }
 
     ASSERT_EQ(expect.size(),path.size()) << "Result and expected vectors are of unequal length";
-
-    for(int i=0;i<expect.size();++i)
-    {
-        EXPECT_EQ(expect[i],path[i]);
-    } 
+    EXPECT_EQ(expect,path);
+    // for(int i=0;i<expect.size();++i)
+    // {
+    //     EXPECT_EQ(expect[i],path[i]);
+    // } 
 
 }

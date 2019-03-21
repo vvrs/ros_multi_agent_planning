@@ -1,42 +1,31 @@
-#include "ros/ros.h"
-#include "std_msgs/String.h"
-#include "geometry_msgs/Pose2D.h"
-
-#include <sstream>
-#include <ctime>
-#include <iostream>
-
-#include "vishnu_rudrasamudram_intern/Algorithm.hpp"
+#include "vishnu_rudrasamudram_intern/Agent.hpp"
 
 int main(int argc, char **argv)
 {
-    ros::init(argc, argv, "agent");
-
+    ros::init(argc, argv, "agent_node");
     ros::NodeHandle nh;
 
-    // Create a publisher (agent_feedback)
-    // TODO:: Add namespace explicitly
-    ros::Publisher agentFeedbackPub = nh.advertise<geometry_msgs::Pose2D>("/agent_feedback", 100);
+    std::string robot_id = argv[1];
+    int init_x = atoi(argv[2]);
+    int init_y = atoi(argv[3]);
+    int init_theta = atoi(argv[4]);
 
-    // Temperorily publish random pose
-    srand(time(NULL));
+    vishnu_rudrasamudram_intern::Position init_p;
+    init_p.id.data = robot_id;
+    init_p.position.x = init_x;
+    init_p.position.y = init_y;
+    init_p.position.theta = init_theta;
 
-    //Set the loop to publish at a certain rate
-    // ros::Rate rate(10);
-
+    multi_agent_planner::Agent agent_(nh, robot_id, init_x, init_y, init_theta);
+    ros::Rate rate(10);
     while (ros::ok())
     {
-        geometry_msgs::Pose2D msg;
 
-        // Random x,y value between 0 and 10
-        msg.x = rand() % 10;
-        msg.y = rand() % 10;
-        msg.theta = 0;
-
-        agentFeedbackPub.publish(msg);
-
-        ros::spinOnce();
-
-        // sleep(2);
+        // agent_.updatePose(init_p);
+        agent_.publishFeedBack();
+        agent_.publishPath();
+        // ros::spin();
+        // rate.sleep()
     }
+    return 0;
 }

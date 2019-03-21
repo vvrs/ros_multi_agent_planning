@@ -3,42 +3,35 @@
 #include "ros/ros.h"
 #include "std_msgs/String.h"
 #include "geometry_msgs/Pose2D.h"
+#include "vishnu_rudrasamudram_intern/Position.h"
+#include "vishnu_rudrasamudram_intern/Path.h"
+#include "vishnu_rudrasamudram_intern/GetPlan.h"
+#include "vishnu_rudrasamudram_intern/UpdateGoal.h"
 
-#include "vishnu_rudrasamudram_intern/Algorithm.hpp"
-
-// #include
+#include <sstream>
+#include <ctime>
+#include <iostream>
 
 namespace multi_agent_planner
 {
-/*
-    This is going to be the main class for the agent to interact
-    using ROS
-*/
-
 class Agent
 {
   private:
-    /*! ROS Node handle */
-    ros::NodeHandle &nodeHandle_;
-
-    geometry_msgs::Pose2D location;
-
+    ros::NodeHandle nh;
+    vishnu_rudrasamudram_intern::Position location;
+    vishnu_rudrasamudram_intern::Path m_path_msg;
     ros::Publisher agentFeedbackPub;
-
-    ros::ServiceServer goalUpdateServer;
-
-    Dijkstra algorithm_;
-    std::vector<std::vector<int> > world_state(GRID_SIZE_H,std::vector<int>(GRID_SIZE_W,FREE_CELL));
+    ros::Publisher agentPathPub;
+    ros::ServiceServer plan_service;
 
   public:
-    
-    Agent(ros::NodeHandle& nodeHandle, int id, geometry_msgs::Pose2D& startPose);
-    void SetPosition(geometry_msgs::Pose2D& pos);
-    virtual ~Agent();
-private:
-bool serviceCallback(std_srvs::Trigger::Request& request,
-                     std_srvs::Trigger::Response& response);
-
-
+    Agent(ros::NodeHandle &nh, std::string robot_id, int x, int y, int theta);
+    bool updateGoal_Server(vishnu_rudrasamudram_intern::UpdateGoal::Request &req,
+                           vishnu_rudrasamudram_intern::UpdateGoal::Response &res);
+    void publishFeedBack();
+    void publishPath();
+    void updatePose(geometry_msgs::Pose2D &pose);
+    ~Agent();
 };
+
 } // namespace multi_agent_planner
