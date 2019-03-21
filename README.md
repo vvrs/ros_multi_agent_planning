@@ -18,6 +18,9 @@ This is a package to demonstrate multi-agent scenario with decentralized plannin
 ```cd ~/catkin_ws```  
 ```catkin_make```
 
+> Note: gtest is written only for Dijkstra algorithm, and can be tested by using `catkin_make run_tests_vishnu_rudrasamudram_intern`.
+
+
 ### Usage  
   
 - Use 'add_agent.launch' to create a node for a new agent  
@@ -110,4 +113,3 @@ id:
 
  Once the above command is executed, rviz plots the path corresponding to robot. Currently, rviz is configured to show paths of only two agents, namely robot_0 and robot_1. 
 
-> Note: gtest is written only for Dijkstra algorithm, and can be tested by using `catkin_make run_tests_vishnu_rudrasamudram_intern`.
