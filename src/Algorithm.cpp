@@ -1,3 +1,9 @@
+/*
+File : Algorithm.cpp
+Vishnu Rudrasamudram
+vishnu.rudrasamudram@gmail.com
+*/
+
 #include "vishnu_rudrasamudram_intern/Algorithm.hpp"
 
 namespace multi_agent_planner
@@ -5,34 +11,38 @@ namespace multi_agent_planner
 
 Dijkstra::Dijkstra()
 {
-
 }
 
-std::map<Dijkstra::position, std::vector<Dijkstra::position> > Dijkstra::ComputeMap(std::vector<std::vector<int> >& world_state)
+std::map<Dijkstra::position, std::vector<Dijkstra::position>> Dijkstra::ComputeMap(std::vector<std::vector<int>> &world_state)
 {
-    std::map<Dijkstra::position, std::vector<Dijkstra::position> > m;
-
-    for(int i = 0; i < int(world_state.size()); ++i){
-        for(int j = 0; j < int(world_state.at(0).size()); ++j){
+    std::map<Dijkstra::position, std::vector<Dijkstra::position>> m;
+    // Represent grid with an adjacent list
+    for (int i = 0; i < int(world_state.size()); ++i)
+    {
+        for (int j = 0; j < int(world_state.at(0).size()); ++j)
+        {
 
             std::vector<Dijkstra::position> adj;
 
-            if((j - 1) >= 0 && world_state.at(i).at(j-1) == 0){
+            if ((j - 1) >= 0 && world_state.at(i).at(j - 1) == 0)
+            {
                 adj.push_back(std::make_pair(i, j - 1));
             }
 
-            if((i + 1) < int(world_state.size()) && world_state.at(i + 1).at(j) == 0){
+            if ((i + 1) < int(world_state.size()) && world_state.at(i + 1).at(j) == 0)
+            {
                 adj.push_back(std::make_pair(i + 1, j));
             }
 
-            if((j + 1) < int(world_state.at(i).size()) && world_state.at(i).at(j + 1) == 0){
+            if ((j + 1) < int(world_state.at(i).size()) && world_state.at(i).at(j + 1) == 0)
+            {
                 adj.push_back(std::make_pair(i, j + 1));
             }
 
-            if((i - 1) >= 0 && world_state.at(i - 1).at(j) == 0)
+            if ((i - 1) >= 0 && world_state.at(i - 1).at(j) == 0)
                 adj.push_back(std::make_pair(i - 1, j));
 
-            if(world_state.at(i).at(j) == 1)
+            if (world_state.at(i).at(j) == 1)
                 adj.clear();
 
             m.emplace(std::make_pair(i, j), adj);
@@ -43,10 +53,10 @@ std::map<Dijkstra::position, std::vector<Dijkstra::position> > Dijkstra::Compute
     return m;
 }
 
-std::vector<Dijkstra::position> Dijkstra::Search(std::vector<std::vector<int> >& env, Dijkstra::position& start, Dijkstra::position& goal)
+std::vector<Dijkstra::position> Dijkstra::Search(std::vector<std::vector<int>> &env, Dijkstra::position &start, Dijkstra::position &goal)
 {
-    std::map<Dijkstra::position, std::vector<Dijkstra::position > > map = ComputeMap(env);
-    std::map<Dijkstra::position, Dijkstra::position > came_from;
+    std::map<Dijkstra::position, std::vector<Dijkstra::position>> map = ComputeMap(env);
+    std::map<Dijkstra::position, Dijkstra::position> came_from;
     std::map<Dijkstra::position, double> cost_so_far;
 
     PriorityQueue<Dijkstra::position, double> frontier;
@@ -61,7 +71,7 @@ std::vector<Dijkstra::position> Dijkstra::Search(std::vector<std::vector<int> >&
 
         if (current == goal)
         {
-          break;
+            break;
         }
 
         auto search = map.find(current);
@@ -88,7 +98,7 @@ std::vector<Dijkstra::position> Dijkstra::Search(std::vector<std::vector<int> >&
 
     path.push_back(start);
 
-    if((std::abs(path.at(0).first - path.at(1).first) > 1) || (std::abs(path.at(0).second - path.at(1).second) > 1))
+    if ((std::abs(path.at(0).first - path.at(1).first) > 1) || (std::abs(path.at(0).second - path.at(1).second) > 1))
     {
         path.clear();
         return path;
@@ -99,8 +109,6 @@ std::vector<Dijkstra::position> Dijkstra::Search(std::vector<std::vector<int> >&
 
 Dijkstra::~Dijkstra()
 {
-
 }
 
-} // 
-
+} // namespace multi_agent_planner

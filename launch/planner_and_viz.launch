@@ -1,10 +1,14 @@
 <launch>
-    <node   name = "$planning_node" 
+    <node   name = "planning_node" 
             pkg = "vishnu_rudrasamudram_intern" 
             type = "plan_server_node" 
             output = "screen"/>
 
-
+    <node   name = "paths2rviz_node" 
+            pkg = "vishnu_rudrasamudram_intern" 
+            type = "path2rviz_node" 
+            output = "screen"/>
+            
     <node   name="rviz" 
             type="rviz" 
             pkg="rviz" 

@@ -140,13 +140,11 @@ add_library(${PROJECT_NAME}_core
 ## Declare a C++ executable
 ## With catkin_make all packages are built within a single CMake context
 ## The recommended prefix ensures that target names across packages don't collide
-# add_executable(${PROJECT_NAME}_node src/vishnu_rudrasamudram_intern_node.cpp)
-# add_executable(map_node src/Map.cpp)
-# add_executable(planning_node src/planning_node.cpp)
+
 add_executable(agent_node src/agent_node.cpp src/Agent.cpp)
 add_executable(plan_server_node src/plan_server_node.cpp src/PlanServer.cpp)
-add_executable(plan_client_node src/plan_client.cpp)
-add_executable(path2rviz_node src/paths2rviz.cpp)
+# add_executable(plan_client_node src/plan_client.cpp)
+add_executable(path2rviz_node src/paths2rviz_node.cpp src/paths2rviz.cpp)
 
 
 
@@ -159,10 +157,8 @@ add_executable(path2rviz_node src/paths2rviz.cpp)
 ## Add cmake target dependencies of the executable
 ## same as for the library above
 add_dependencies(agent_node ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
-# add_dependencies(map_node ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
-# add_dependencies(planning_node ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 add_dependencies(plan_server_node ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
-add_dependencies(plan_client_node ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+# add_dependencies(plan_client_node ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 add_dependencies(path2rviz_node ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 
 
@@ -173,10 +169,8 @@ add_dependencies(path2rviz_node ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXP
 # )
 
 target_link_libraries(agent_node  ${PROJECT_NAME}_core ${catkin_LIBRARIES})
-# target_link_libraries(map_node  ${PROJECT_NAME}_core ${catkin_LIBRARIES})
-# target_link_libraries(planning_node  ${PROJECT_NAME}_core ${catkin_LIBRARIES})
 target_link_libraries(plan_server_node  ${PROJECT_NAME}_core ${catkin_LIBRARIES})
-target_link_libraries(plan_client_node  ${PROJECT_NAME}_core ${catkin_LIBRARIES})
+# target_link_libraries(plan_client_node  ${PROJECT_NAME}_core ${catkin_LIBRARIES})
 target_link_libraries(path2rviz_node  ${PROJECT_NAME}_core ${catkin_LIBRARIES})
 
 
