@@ -22,9 +22,11 @@ This is a package to demonstrate multi-agent scenario with decentralized plannin
 ### Usage  
   
 - Use 'add_agent.launch' to create a node for a new agent  
+
 ```bash roslaunch vishnu_rudrasamudram_intern add_agent.launch```
 
 - Run 'plan_server_node' to get the path for a given agent  
+
 ```bash rosrun vishnu_rudrasamudram_intern plan_server_node```   
 
 ### Launch Files
