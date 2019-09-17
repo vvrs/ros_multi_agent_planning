@@ -1,4 +1,4 @@
-# vishnu_rudrasamudram_intern
+# ros_multi_agent_planning
 
 [![Build Status](https://travis-ci.org/vvrs/vishnu_rudrasamudram_intern.svg?branch=master)](https://travis-ci.org/vvrs/vishnu_rudrasamudram_intern)
 
