@@ -67,26 +67,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="cf908fe2-4ef6-4b85-8c6c-1ec1bc0d4406" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/CMakeLists.txt" beforeDir="false" afterPath="$PROJECT_DIR$/CMakeLists.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/include/vishnu_rudrasamudram_intern/Agent.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/include/vishnu_rudrasamudram_intern/Algorithm.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/include/vishnu_rudrasamudram_intern/Path2RViz.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/include/vishnu_rudrasamudram_intern/PlanServer.hpp" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/launch/add_agent.launch" beforeDir="false" afterPath="$PROJECT_DIR$/launch/add_agent.launch" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/launch/planner_and_viz.launch" beforeDir="false" afterPath="$PROJECT_DIR$/launch/planner_and_viz.launch" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.xml" beforeDir="false" afterPath="$PROJECT_DIR$/package.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Agent.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Agent.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Algorithm.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/Algorithm.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/PlanServer.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/PlanServer.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/agent_node.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/agent_node.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/paths2rviz.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/paths2rviz.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/paths2rviz_node.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/paths2rviz_node.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/plan_server_node.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/src/plan_server_node.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/srv/GetPlan.srv" beforeDir="false" afterPath="$PROJECT_DIR$/srv/GetPlan.srv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/algorithm_test.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/test/algorithm_test.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/test_vishnu_rudrasamudram_intern.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/test/test_ros_multi_agent_planning.cpp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test/tests.sh" beforeDir="false" afterPath="$PROJECT_DIR$/test/tests.sh" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -468,7 +450,7 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1568735219929</updated>
-      <workItem from="1568735231748" duration="899000" />
+      <workItem from="1568735231748" duration="1306000" />
     </task>
     <servers />
   </component>

@@ -1,8 +1,0 @@
-prefix=/home/vishnu/catkin_ws/src/ros_multi_agent_planning/cmake-build-debug/devel
-
-Name: vishnu_rudrasamudram_intern
-Description: Description of vishnu_rudrasamudram_intern
-Version: 0.0.0
-Cflags: -I/home/vishnu/catkin_ws/src/ros_multi_agent_planning/cmake-build-debug/devel/include -I/home/vishnu/catkin_ws/src/ros_multi_agent_planning/include -I/usr/include
-Libs: -L/home/vishnu/catkin_ws/src/ros_multi_agent_planning/cmake-build-debug/devel/lib -lvishnu_rudrasamudram_intern_core
-Requires: geometry_msgs roscpp rospy std_msgs message_runtime

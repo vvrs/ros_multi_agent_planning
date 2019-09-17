@@ -1,1 +1,0 @@
-/usr/bin/c++ -fPIC  -pthread -g  -shared -Wl,-soname,libvishnu_rudrasamudram_intern_core.so -o devel/lib/libvishnu_rudrasamudram_intern_core.so CMakeFiles/vishnu_rudrasamudram_intern_core.dir/src/Algorithm.cpp.o 
