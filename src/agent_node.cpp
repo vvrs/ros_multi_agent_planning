@@ -4,7 +4,7 @@ Vishnu Rudrasamudram
 vishnu.rudrasamudram@gmail.com
 */
 
-#include "vishnu_rudrasamudram_intern/Agent.hpp"
+#include "ros_multi_agent_planning/Agent.hpp"
 
 int main(int argc, char **argv)
 {
@@ -17,7 +17,7 @@ int main(int argc, char **argv)
     int init_y = atoi(argv[3]);
     int init_theta = atoi(argv[4]);
 
-    vishnu_rudrasamudram_intern::Position init_p;
+    ros_multi_agent_planning::Position init_p;
     init_p.id.data = robot_id;
     init_p.position.x = init_x;
     init_p.position.y = init_y;

@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 2.8.3)
-project(vishnu_rudrasamudram_intern)
+project(ros_multi_agent_planning)
 
 ## Compile as C++11, supported in ROS Kinetic and newer
 # add_compile_options(-std=c++11)
@@ -76,7 +76,7 @@ generate_messages(
   DEPENDENCIES
   geometry_msgs
   std_msgs
-  vishnu_rudrasamudram_intern
+  ros_multi_agent_planning
 )
 
 ################################################
@@ -223,7 +223,7 @@ install(
 
 # set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -pthread")
 # # Add gtest based cpp test target and link libraries
-# catkin_add_gtest(${PROJECT_NAME}-test test/test_vishnu_rudrasamudram_intern.cpp)
+# catkin_add_gtest(${PROJECT_NAME}-test test/test_ros_multi_agent_planning.cpp)
 # if(TARGET ${PROJECT_NAME}-test)
 #   target_link_libraries(${PROJECT_NAME}-test ${PROJECT_NAME})
 # endif()
@@ -234,7 +234,7 @@ if(CATKIN_ENABLE_TESTING)
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -pthread")
 ## Add gtest based cpp test target and link libraries
 catkin_add_gtest(${PROJECT_NAME}-test
-  test/test_vishnu_rudrasamudram_intern.cpp
+  test/test_ros_multi_agent_planning.cpp
   test/algorithm_test.cpp)
 endif()
 

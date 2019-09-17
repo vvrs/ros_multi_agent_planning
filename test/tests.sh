@@ -2,10 +2,10 @@
 
 commands=(
     # TEST 1 - launch two agents robot_0 and robot_1
-    "roslaunch vishnu_rudrasamudram_intern add_agent.launch"
-    "roslaunch vishnu_rudrasamudram_intern add_agent.launch robot_id:=robot_1 x:=3 y:=5"
+    "roslaunch ros_multi_agent_planning add_agent.launch"
+    "roslaunch ros_multi_agent_planning add_agent.launch robot_id:=robot_1 x:=3 y:=5"
     # Launch plannng service and rviz
-    "roslaunch vishnu_rudrasamudram_intern planner_and_viz.launch"
+    "roslaunch ros_multi_agent_planning planner_and_viz.launch"
 )
 
 set finalCommand=""

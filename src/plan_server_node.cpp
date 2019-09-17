@@ -4,7 +4,7 @@ Vishnu Rudrasamudram
 vishnu.rudrasamudram@gmail.com
 */
 
-#include "vishnu_rudrasamudram_intern/PlanServer.hpp"
+#include "ros_multi_agent_planning/PlanServer.hpp"
 
 int main(int argc, char **argv)
 {

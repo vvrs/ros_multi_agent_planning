@@ -1,0 +1,2 @@
+- setup-file:
+    local-name: /home/vishnu/catkin_ws/src/ros_multi_agent_planning/cmake-build-debug/devel/setup.sh

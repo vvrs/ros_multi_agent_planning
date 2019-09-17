@@ -4,7 +4,7 @@ Vishnu Rudrasamudram
 vishnu.rudrasamudram@gmail.com
 */
 
-#include "vishnu_rudrasamudram_intern/Path2RViz.hpp"
+#include "ros_multi_agent_planning/Path2RViz.hpp"
 
 int main(int argc, char **argv)
 {

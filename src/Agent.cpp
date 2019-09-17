@@ -4,12 +4,12 @@ Vishnu Rudrasamudram
 vishnu.rudrasamudram@gmail.com
 */
 
-#include "vishnu_rudrasamudram_intern/Agent.hpp"
+#include "ros_multi_agent_planning/Agent.hpp"
 
 multi_agent_planner::Agent::Agent(ros::NodeHandle &nh, std::string robot_id, int x, int y, int theta):nh(nh)
 {
-    agentFeedbackPub = nh.advertise<vishnu_rudrasamudram_intern::Position>("/agent_feedback", 100);
-    agentPathPub = nh.advertise<vishnu_rudrasamudram_intern::Path>("/agent_path", 100);
+    agentFeedbackPub = nh.advertise<ros_multi_agent_planning::Position>("/agent_feedback", 100);
+    agentPathPub = nh.advertise<ros_multi_agent_planning::Path>("/agent_path", 100);
     plan_service = nh.advertiseService("update_goal", &Agent::updateGoal_Server, this);
     // Set initial msg data
     location.id.data = robot_id;
@@ -28,15 +28,15 @@ multi_agent_planner::Agent::Agent(ros::NodeHandle &nh, std::string robot_id, int
     std::cout << "Agent " << robot_id << " node is running ...\n";
 }
 
-bool multi_agent_planner::Agent::updateGoal_Server(vishnu_rudrasamudram_intern::UpdateGoal::Request &req,
-                                                   vishnu_rudrasamudram_intern::UpdateGoal::Response &res)
+bool multi_agent_planner::Agent::updateGoal_Server(ros_multi_agent_planning::UpdateGoal::Request &req,
+                                                   ros_multi_agent_planning::UpdateGoal::Response &res)
 {
     ROS_INFO("updateGoal called...");
 
-    ros::ServiceClient client = nh.serviceClient<vishnu_rudrasamudram_intern::GetPlan>("get_plan");
+    ros::ServiceClient client = nh.serviceClient<ros_multi_agent_planning::GetPlan>("get_plan");
 
     // Prepare service call to get_plan
-    vishnu_rudrasamudram_intern::GetPlan srv;
+    ros_multi_agent_planning::GetPlan srv;
 
     srv.request.goal.x = req.goal.x;
     srv.request.goal.y = req.goal.y;
@@ -45,8 +45,8 @@ bool multi_agent_planner::Agent::updateGoal_Server(vishnu_rudrasamudram_intern::
     // service call
     if (client.call(srv))
     {
-        vishnu_rudrasamudram_intern::Path path = srv.response.path;
-        vishnu_rudrasamudram_intern::Path pathMsg;
+        ros_multi_agent_planning::Path path = srv.response.path;
+        ros_multi_agent_planning::Path pathMsg;
         geometry_msgs::Pose2D temp;
         for (const auto p : path.poses)
         {

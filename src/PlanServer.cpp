@@ -4,7 +4,7 @@ Vishnu Rudrasamudram
 vishnu.rudrasamudram@gmail.com
 */
 
-#include "vishnu_rudrasamudram_intern/PlanServer.hpp"
+#include "ros_multi_agent_planning/PlanServer.hpp"
 
 multi_agent_planner::PlanServer::PlanServer(ros::NodeHandle &nh)
 {
@@ -18,13 +18,13 @@ multi_agent_planner::PlanServer::~PlanServer()
 {
 }
 
-void multi_agent_planner::PlanServer::callBack(const vishnu_rudrasamudram_intern::Position &msg)
+void multi_agent_planner::PlanServer::callBack(const ros_multi_agent_planning::Position &msg)
 {
     pos_map[msg.id.data] = msg.position;
 }
 
-bool multi_agent_planner::PlanServer::getPlan_Server(vishnu_rudrasamudram_intern::GetPlan::Request &req,
-                                                     vishnu_rudrasamudram_intern::GetPlan::Response &res)
+bool multi_agent_planner::PlanServer::getPlan_Server(ros_multi_agent_planning::GetPlan::Request &req,
+                                                     ros_multi_agent_planning::GetPlan::Response &res)
 {
 
     ROS_INFO("Get Plan Service called...");
@@ -52,7 +52,7 @@ bool multi_agent_planner::PlanServer::getPlan_Server(vishnu_rudrasamudram_intern
     multi_agent_planner::Dijkstra c;
     std::vector<std::pair<int, int>> path = c.Search(world_state, a, b);
 
-    vishnu_rudrasamudram_intern::Path pathMsg;
+    ros_multi_agent_planning::Path pathMsg;
     geometry_msgs::Pose2D temp;
 
     for (const auto p : path)

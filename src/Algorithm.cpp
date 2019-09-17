@@ -4,7 +4,7 @@ Vishnu Rudrasamudram
 vishnu.rudrasamudram@gmail.com
 */
 
-#include "vishnu_rudrasamudram_intern/Algorithm.hpp"
+#include "ros_multi_agent_planning/Algorithm.hpp"
 
 namespace multi_agent_planner
 {

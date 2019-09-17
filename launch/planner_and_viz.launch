@@ -1,16 +1,16 @@
 <launch>
     <node   name = "planning_node" 
-            pkg = "vishnu_rudrasamudram_intern" 
+            pkg = "ros_multi_agent_planning"
             type = "plan_server_node" 
             output = "screen"/>
 
     <node   name = "paths2rviz_node" 
-            pkg = "vishnu_rudrasamudram_intern" 
+            pkg = "ros_multi_agent_planning"
             type = "path2rviz_node" 
             output = "screen"/>
             
     <node   name="rviz" 
             type="rviz" 
             pkg="rviz" 
-            args="-d $(find vishnu_rudrasamudram_intern)/config/multi_agent_planner.rviz" />
+            args="-d $(find ros_multi_agent_planning)/config/multi_agent_planner.rviz" />
 </launch>

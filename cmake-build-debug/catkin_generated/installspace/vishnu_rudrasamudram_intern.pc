@@ -1,0 +1,8 @@
+prefix=/usr/local
+
+Name: vishnu_rudrasamudram_intern
+Description: Description of vishnu_rudrasamudram_intern
+Version: 0.0.0
+Cflags: -I/usr/local/include -I/usr/include
+Libs: -L/usr/local/lib -lvishnu_rudrasamudram_intern_core
+Requires: geometry_msgs roscpp rospy std_msgs message_runtime

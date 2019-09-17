@@ -1,6 +1,6 @@
 # ros_multi_agent_planning
 
-[![Build Status](https://travis-ci.org/vvrs/vishnu_rudrasamudram_intern.svg?branch=master)](https://travis-ci.org/vvrs/vishnu_rudrasamudram_intern)
+[![Build Status](https://travis-ci.org/vvrs/ros_multi_agent_planning.svg?branch=master)](https://travis-ci.org/vvrs/ros_multi_agent_planning)
 
 Multi-agent scenario with decentralized planning
 
@@ -16,22 +16,22 @@ This is a package to demonstrate multi-agent scenario with decentralized plannin
 
 > Make sure that you have ROS installed and workspace is created
 
-```git clone https://github.com/vvrs/vishnu_rudrasamudram_intern.git```  
+```git clone https://github.com/vvrs/ros_multi_agent_planning.git```  
 ```cd ~/catkin_ws```  
 ```catkin_make```
 
-> Note: gtest is written only for Dijkstra algorithm, and can be tested by using `catkin_make run_tests_vishnu_rudrasamudram_intern`.
+> Note: gtest is written only for Dijkstra algorithm, and can be tested by using `catkin_make run_tests_ros_multi_agent_planning`.
 
 
 ### Usage  
   
 - Use 'add_agent.launch' to create a node for a new agent  
 
-```roslaunch vishnu_rudrasamudram_intern add_agent.launch```
+```roslaunch ros_multi_agent_planning add_agent.launch```
 
 - Run 'plan_server_node' to get the path for a given agent  
 
-```rosrun vishnu_rudrasamudram_intern plan_server_node```   
+```rosrun ros_multi_agent_planning plan_server_node```   
 
 ### Launch Files
 ##### add_agent.launch
@@ -51,8 +51,8 @@ This launches planner server node, and rviz node for visualization of the path.
 #### agent_node
 
 Publications: 
- * /agent_feedback [vishnu_rudrasamudram_intern/Position]
- * /agent_path [vishnu_rudrasamudram_intern/Path]
+ * /agent_feedback [ros_multi_agent_planning/Position]
+ * /agent_path [ros_multi_agent_planning/Path]
 
 Subscriptions: None
 
@@ -65,7 +65,7 @@ Services:
 Publications: None
 
 Subscriptions: 
- * /agent_feedback [vishnu_rudrasamudram_intern/Position]
+ * /agent_feedback [ros_multi_agent_planning/Position]
 
 Services: 
  * /get_plan
@@ -76,7 +76,7 @@ Publications:
  * /path [nav_msgs/Path]
 
 Subscriptions: 
- * /agent_path [vishnu_rudrasamudram_intern/Path]
+ * /agent_path [ros_multi_agent_planning/Path]
 
 Services: None
 
@@ -85,11 +85,11 @@ Services: None
 Run below commands in different terminal tabs
 
 
-```roslaunch vishnu_rudrasamudram_intern add_agent.launch```
+```roslaunch ros_multi_agent_planning add_agent.launch```
 
-```roslaunch vishnu_rudrasamudram_intern add_agent.launch robot_id:=agent_2 x:=5 y:=5```
+```roslaunch ros_multi_agent_planning add_agent.launch robot_id:=agent_2 x:=5 y:=5```
 
-```roslaunch vishnu_rudrasamudram_intern planner_and_viz.launch```
+```roslaunch ros_multi_agent_planning planner_and_viz.launch```
 
 Now, you will see two nodes for agents (agent_1_node and agent_2_node) running and RViz window opens.
 

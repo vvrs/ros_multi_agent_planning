@@ -4,7 +4,7 @@ Vishnu Rudrasamudram
 vishnu.rudrasamudram@gmail.com
 */
 
-#include "vishnu_rudrasamudram_intern/Path2RViz.hpp"
+#include "ros_multi_agent_planning/Path2RViz.hpp"
 
 multi_agent_planner::paths2rviz::paths2rviz(ros::NodeHandle &nh) : nh(nh)
 {
@@ -22,7 +22,7 @@ multi_agent_planner::paths2rviz::~paths2rviz()
 {
 }
 
-void multi_agent_planner::paths2rviz::agentPathCallback(const vishnu_rudrasamudram_intern::Path &msg)
+void multi_agent_planner::paths2rviz::agentPathCallback(const ros_multi_agent_planning::Path &msg)
 {
     // declare publisher for each agent
     pubs_map[msg.id.data] = nh.advertise<nav_msgs::Path>(msg.id.data + "/path", 100);

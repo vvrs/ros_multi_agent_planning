@@ -5,7 +5,7 @@
 	<arg name = "theta" default = "0"/>
 	
 	<node 	name = "$(arg robot_id)_node" 
-			pkg = "vishnu_rudrasamudram_intern" 
+			pkg = "ros_multi_agent_planning"
 			type = "agent_node" 
 			args = "$(arg robot_id) $(arg x) $(arg y) $(arg theta)" 
 			output = "screen"/>

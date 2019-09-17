@@ -2,7 +2,7 @@
 #include <gtest/gtest.h>
 #include <vector>
 
-#include "vishnu_rudrasamudram_intern/Algorithm.hpp"
+#include "ros_multi_agent_planning/Algorithm.hpp"
 
 // using namespace multi_agent_planner;
 
